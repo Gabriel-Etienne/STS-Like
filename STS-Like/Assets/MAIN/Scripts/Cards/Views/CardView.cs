@@ -9,4 +9,15 @@ public class CardView : MonoBehaviour
     
     [SerializeField] private SpriteRenderer imageSR;
     [SerializeField] private GameObject wrapper;
+
+    public Card cardRef;
+    public void Setup(Card card)
+    {
+        cardRef = card;
+        
+        title.text = card.Title;
+        description.text = card.Description;
+        mana.text = card.Mana.ToString();
+        imageSR.sprite = card.Image;
+    }
 }
