@@ -27,6 +27,8 @@ public class CardSystem : Singleton<CardSystem>
         ActionSystem.AttachPerformer<DrawCardGA>(DrawCardPerformer);
         ActionSystem.AttachPerformer<DiscardAllCardsGA>(DiscardAllCardsPerformer);
         
+        ActionSystem.AttachPerformer<PlayCardGA>(PlayCardPerformer);
+        
         ActionSystem.SubscribeReaction<EnemyTurnGA>(EnemyTurnPreReaction, ReactionTiming.PRE);
         ActionSystem.SubscribeReaction<EnemyTurnGA>(EnemyTurnPostReaction, ReactionTiming.POST);
     }
@@ -36,6 +38,7 @@ public class CardSystem : Singleton<CardSystem>
         ActionSystem.DetachPerformer<DrawCardGA>();
         ActionSystem.DetachPerformer<DiscardAllCardsGA>();
         
+        ActionSystem.DetachPerformer<PlayCardGA>();
         
         ActionSystem.UnsubscribeReaction<EnemyTurnGA>(EnemyTurnPreReaction, ReactionTiming.PRE);
         ActionSystem.UnsubscribeReaction<EnemyTurnGA>(EnemyTurnPostReaction, ReactionTiming.POST);
@@ -101,6 +104,16 @@ public class CardSystem : Singleton<CardSystem>
             hand.Clear();
         }
 
+        private IEnumerator PlayCardPerformer(PlayCardGA playCardGa)
+        {
+            hand.Remove(playCardGa.card);
+            CardView cardView = handView.RemoveCard(playCardGa.card);
+            yield return DiscardCard(cardView);
+            discardPile.Add(playCardGa.card);
+            // perform effect
+
+        }
+
     #endregion
     
     #region Helpers
@@ -108,7 +121,12 @@ public class CardSystem : Singleton<CardSystem>
         private IEnumerator DrawCard()
         {
             Card card = drawPile.Draw();
+            
+            //Debug.Log($"Card tirée : {card}");
+            //Debug.Log($"Nombre de cartes restantes : {drawPile.Count}");
+
             hand.Add(card);
+            
             CardView cardView = CardViewCreator.Instance.CreateCardView(card, drawPilePoint.position, drawPilePoint.rotation);
             
             yield return handView.AddCard(cardView);
