@@ -106,12 +106,16 @@ public class CardSystem : Singleton<CardSystem>
 
         private IEnumerator PlayCardPerformer(PlayCardGA playCardGa)
         {
-            hand.Remove(playCardGa.card);
-            CardView cardView = handView.RemoveCard(playCardGa.card);
+            hand.Remove(playCardGa.Card);
+            CardView cardView = handView.RemoveCard(playCardGa.Card);
             yield return DiscardCard(cardView);
-            discardPile.Add(playCardGa.card);
+            discardPile.Add(playCardGa.Card);
             // perform effect
-
+            foreach (Effect effect in playCardGa.Card.Effects)
+            {
+                PerformEffectGA performEffectGA = new(effect);
+                ActionSystem.Instance.AddReaction(performEffectGA);
+            }
         }
 
     #endregion
@@ -122,7 +126,7 @@ public class CardSystem : Singleton<CardSystem>
         {
             Card card = drawPile.Draw();
             
-            //Debug.Log($"Card tirée : {card}");
+            //Debug.Log($"Card tirée : {Card}");
             //Debug.Log($"Nombre de cartes restantes : {drawPile.Count}");
 
             hand.Add(card);

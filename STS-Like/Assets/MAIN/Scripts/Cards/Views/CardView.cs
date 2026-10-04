@@ -24,7 +24,7 @@ public class CardView : MonoBehaviour
     
     public void Setup(Card card)
     {
-        Debug.Log($"Setup CardView - card = {card}");
+        Debug.Log($"Setup CardView - Card = {card}");
         
         cardRef = card;
         
@@ -54,7 +54,7 @@ public class CardView : MonoBehaviour
         wrapper.SetActive(true);
     }
 
-    // click on a card
+    // click on a Card
     private void OnMouseDown()
     {
         if (!Interactions.Instance.PlayerCanInteract() || !isSetupFinished) return;
@@ -69,20 +69,20 @@ public class CardView : MonoBehaviour
         transform.position = MouseUtil.GetMousePositionInWorldSpace(zValueWhenDragged);
     }
 
-    // drag the card around
+    // drag the Card around
     private void OnMouseDrag()
     {
         if (!Interactions.Instance.PlayerCanInteract() || !isSetupFinished) return;
         transform.position = MouseUtil.GetMousePositionInWorldSpace(zValueWhenDragged);
     }
 
-    // when you release the card
+    // when you release the Card
     private void OnMouseUp()
     {
         if (!Interactions.Instance.PlayerCanInteract() || !isSetupFinished) return;
         if (Physics.Raycast(transform.position, Vector3.forward, out RaycastHit hit, 10f, dropAreaLayer))
         { 
-            // play the card
+            // play the Card
             PlayCardGA playCardGa = new PlayCardGA(cardRef);
             ActionSystem.Instance.Perform(playCardGa);
         }
