@@ -109,7 +109,12 @@ public class CardSystem : Singleton<CardSystem>
             hand.Remove(playCardGa.Card);
             CardView cardView = handView.RemoveCard(playCardGa.Card);
             yield return DiscardCard(cardView);
+            
+            SpendManaGA spendManaGa = new(playCardGa.Card.Mana);
+            ActionSystem.Instance.AddReaction(spendManaGa);
+            
             discardPile.Add(playCardGa.Card);
+            
             // perform effect
             foreach (Effect effect in playCardGa.Card.Effects)
             {
