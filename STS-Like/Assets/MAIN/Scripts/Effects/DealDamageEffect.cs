@@ -4,11 +4,9 @@ using System.Collections.Generic;
 public class DealDamageEffect : Effect
 {
     [SerializeField] private int damageAmount;
-    public override GameAction GetGameAction()
+    public override GameAction GetGameAction(List<CombatantView> _targets)
     {
-        // will change later when we can target enemies
-        List<CombatantView> targets = new(EnemySystem.Instance.Enemies);
-        DealDamageGA dealDamageGA = new(damageAmount, targets);
+        DealDamageGA dealDamageGA = new(damageAmount, _targets);
         return dealDamageGA;
     }
 }

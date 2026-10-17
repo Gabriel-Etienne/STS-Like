@@ -118,9 +118,10 @@ public class CardSystem : Singleton<CardSystem>
             discardPile.Add(playCardGa.Card);
             
             // perform effect
-            foreach (Effect effect in playCardGa.Card.Effects)
+            foreach (var effectWrapper in playCardGa.Card.OtherEffects)
             {
-                PerformEffectGA performEffectGA = new(effect);
+                List<CombatantView> targets = effectWrapper.TargetMode.GetTargets();
+                PerformEffectGA performEffectGA = new(effectWrapper.Effect, targets);
                 ActionSystem.Instance.AddReaction(performEffectGA);
             }
         }
@@ -132,10 +133,9 @@ public class CardSystem : Singleton<CardSystem>
         private IEnumerator DrawCard()
         {
             Card card = drawPile.Draw();
-            
-            //Debug.Log($"Card tirée : {Card}");
-            //Debug.Log($"Nombre de cartes restantes : {drawPile.Count}");
 
+            if (card == null) yield break;
+            
             hand.Add(card);
             
             CardView cardView = CardViewCreator.Instance.CreateCardView(card, drawPilePoint.position, drawPilePoint.rotation);
@@ -152,6 +152,7 @@ public class CardSystem : Singleton<CardSystem>
 
         private IEnumerator DiscardCard(CardView cardView)
         {
+            //discardPile.Add(cardView.cardRef);
             cardView.transform.DOScale(Vector3.zero, discardCardDuration);
             Tween tween = cardView.transform.DOMove(discardPilePoint.position, discardCardDuration);
             yield return tween.WaitForCompletion();

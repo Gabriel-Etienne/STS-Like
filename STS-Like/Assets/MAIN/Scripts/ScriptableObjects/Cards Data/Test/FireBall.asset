@@ -12,6 +12,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c85328dec65ffea43bd32bcd13451b6b, type: 3}
   m_Name: FireBall
   m_EditorClassIdentifier: Assembly-CSharp::CardData
-  <Description>k__BackingField: Deal 6 damage.
+  <Description>k__BackingField: Deal 3 damage to a random enemy twice.
   <Mana>k__BackingField: 1
   <Image>k__BackingField: {fileID: 21300000, guid: 25c96c0ab0e76b343ba650d210db565e, type: 3}
+  <ManualTargetingEffect>k__BackingField:
+    rid: -2
+  <OtherEffects>k__BackingField:
+  - rid: 8750912283366916187
+  - rid: 8750912283366916190
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 8750912283366916187
+      type: {class: AutoTargetEffect, ns: , asm: Assembly-CSharp}
+      data:
+        <TargetMode>k__BackingField:
+          rid: 8750912283366916188
+        <Effect>k__BackingField:
+          rid: 8750912283366916189
+    - rid: 8750912283366916188
+      type: {class: RandomEnemyTM, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 8750912283366916189
+      type: {class: DealDamageEffect, ns: , asm: Assembly-CSharp}
+      data:
+        damageAmount: 3
+    - rid: 8750912283366916190
+      type: {class: AutoTargetEffect, ns: , asm: Assembly-CSharp}
+      data:
+        <TargetMode>k__BackingField:
+          rid: 8750912283366916191
+        <Effect>k__BackingField:
+          rid: 8750912283366916193
+    - rid: 8750912283366916191
+      type: {class: RandomEnemyTM, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 8750912283366916193
+      type: {class: DealDamageEffect, ns: , asm: Assembly-CSharp}
+      data:
+        damageAmount: 3

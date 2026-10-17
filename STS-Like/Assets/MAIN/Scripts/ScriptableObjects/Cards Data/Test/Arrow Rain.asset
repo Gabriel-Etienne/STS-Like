@@ -15,12 +15,26 @@ MonoBehaviour:
   <Description>k__BackingField: Deal 8 damage to all enemy.
   <Mana>k__BackingField: 1
   <Image>k__BackingField: {fileID: 21300000, guid: 8c66933b8bffdac41bb1d3b974716c83, type: 3}
-  <Effects>k__BackingField:
-  - rid: 8750912281403719989
+  <ManualTargetingEffect>k__BackingField:
+    rid: -2
+  <OtherEffects>k__BackingField:
+  - rid: 8750912283366916181
   references:
     version: 2
     RefIds:
-    - rid: 8750912281403719989
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 8750912283366916181
+      type: {class: AutoTargetEffect, ns: , asm: Assembly-CSharp}
+      data:
+        <TargetMode>k__BackingField:
+          rid: 8750912283366916182
+        <Effect>k__BackingField:
+          rid: 8750912283366916183
+    - rid: 8750912283366916182
+      type: {class: AllEnemiesTM, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 8750912283366916183
       type: {class: DealDamageEffect, ns: , asm: Assembly-CSharp}
       data:
         damageAmount: 8

@@ -309,11 +309,11 @@ RectTransform:
   - {fileID: 590522731}
   m_Father: {fileID: 875492196}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -50, y: -50}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: -50, y: 50}
   m_SizeDelta: {x: 360, y: 360}
-  m_Pivot: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 1}
 --- !u!222 &328047052
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1481,7 +1481,7 @@ Transform:
   m_GameObject: {fileID: 876033633}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -7, z: 0}
+  m_LocalPosition: {x: 0, y: -6.75, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2340,6 +2340,7 @@ MonoBehaviour:
   - {fileID: 1970635722}
   - {fileID: 2129952428}
   - {fileID: 1882767625}
+  EnemyViews: []
 --- !u!1 &1607792647
 GameObject:
   m_ObjectHideFlags: 0
@@ -2386,26 +2387,26 @@ MonoBehaviour:
   - m_EditModeType: 1
     m_Knots:
     - Position:
-        x: -6.5
+        x: -8
         y: 0
         z: 0
       TangentIn:
         x: -0
         y: -0
-        z: -0.66708326
+        z: -0.80970675
       TangentOut:
         x: 0
         y: 0
-        z: 0.66708326
+        z: 0.80970675
       Rotation:
         value:
-          x: -0.5533668
-          y: 0.44021046
-          z: -0.44021016
-          w: 0.5533669
+          x: -0.5372096
+          y: 0.45978907
+          z: -0.45978865
+          w: 0.5372098
     - Position:
         x: 0
-        y: 1.5
+        y: 1.25
         z: 0
       TangentIn:
         x: 0
@@ -2422,23 +2423,23 @@ MonoBehaviour:
           z: -0.5
           w: 0.5
     - Position:
-        x: 6.5
+        x: 8
         y: 0
         z: 0
       TangentIn:
         x: -0
         y: -0
-        z: -0.66708326
+        z: -0.80970675
       TangentOut:
         x: 0
         y: 0
-        z: 0.66708326
+        z: 0.80970675
       Rotation:
         value:
-          x: -0.44021016
-          y: 0.5533669
-          z: -0.5533668
-          w: 0.44021046
+          x: -0.45978865
+          y: 0.5372098
+          z: -0.5372096
+          w: 0.45978907
     m_MetaData:
     - Mode: 0
       Tension: 0.5
