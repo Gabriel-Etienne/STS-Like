@@ -7,15 +7,21 @@ public class EnemySystem : Singleton<EnemySystem>
 {
     [SerializeField] private EnemyBoardView enemyBoardView;
     
+    // Temporary property to deal damage
+    public List<EnemyView> Enemies => enemyBoardView.EnemyViews;
+    
+    
     private void OnEnable()
     {
         ActionSystem.AttachPerformer<EnemyTurnGA>(EnemyTurnPerformer);
         ActionSystem.AttachPerformer<AttackHeroGA>(AttackHeroPerformer);
+        ActionSystem.AttachPerformer<KillEnemyGA>(KillEnemyPerformer);
     }
     private void OnDisable()
     {
         ActionSystem.DetachPerformer<EnemyTurnGA>();;
         ActionSystem.DetachPerformer<AttackHeroGA>();
+        ActionSystem.DetachPerformer<KillEnemyGA>();
     }
 
     public void Setup(List<EnemyData> enemyDatas)
@@ -28,7 +34,7 @@ public class EnemySystem : Singleton<EnemySystem>
 
     private IEnumerator EnemyTurnPerformer(EnemyTurnGA enemyTurnGa)
     {
-        foreach (var enemy in enemyBoardView.enemyViews)
+        foreach (var enemy in enemyBoardView.EnemyViews)
         {
             AttackHeroGA attackHeroGA = new(enemy);
             ActionSystem.Instance.AddReaction(attackHeroGA);
@@ -49,6 +55,13 @@ public class EnemySystem : Singleton<EnemySystem>
         DealDamageGA dealDamageGA = new (attacker.AttackPower, new(){HeroSystem.Instance.heroView});
         ActionSystem.Instance.AddReaction(dealDamageGA);
         
+    }
+
+    private IEnumerator KillEnemyPerformer(KillEnemyGA killEnemyGA)
+    {
+        yield return enemyBoardView.RemoveEnemy(killEnemyGA.Target);
+        
+        yield return null;
     }
     
 }
