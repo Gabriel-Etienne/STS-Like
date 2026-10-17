@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class HeroView : CombatantView
 {
-    public void Setup()
+    public void Setup(HeroData data)
     {
-        SetupBase(30, null);
+        SetupBase(data.Health, data.Image);
     }
 }
