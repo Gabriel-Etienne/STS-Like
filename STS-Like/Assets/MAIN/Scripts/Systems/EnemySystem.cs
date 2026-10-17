@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class EnemySystem : Singleton<EnemySystem>
 {
@@ -9,10 +10,12 @@ public class EnemySystem : Singleton<EnemySystem>
     private void OnEnable()
     {
         ActionSystem.AttachPerformer<EnemyTurnGA>(EnemyTurnPerformer);
+        ActionSystem.AttachPerformer<AttackHeroGA>(AttackHeroPerformer);
     }
     private void OnDisable()
     {
-        ActionSystem.DetachPerformer<EnemyTurnGA>();
+        ActionSystem.DetachPerformer<EnemyTurnGA>();;
+        ActionSystem.DetachPerformer<AttackHeroGA>();
     }
 
     public void Setup(List<EnemyData> enemyDatas)
@@ -25,9 +28,27 @@ public class EnemySystem : Singleton<EnemySystem>
 
     private IEnumerator EnemyTurnPerformer(EnemyTurnGA enemyTurnGa)
     {
-        Debug.Log("Enemy Turn");
-        yield return new WaitForSeconds(2f);
-        Debug.Log("End Enemy Turn");
+        foreach (var enemy in enemyBoardView.enemyViews)
+        {
+            AttackHeroGA attackHeroGA = new(enemy);
+            ActionSystem.Instance.AddReaction(attackHeroGA);
+        }
+        yield return null;
+    }
+
+    private IEnumerator AttackHeroPerformer(AttackHeroGA attackHeroGA)
+    {
+        EnemyView attacker = attackHeroGA.Attacker;
+        
+        // temporary animation
+        Tween tween = attacker.transform.DOMoveX(attacker.transform.position.x - 0.75f, 0.075f);
+        yield return tween.WaitForCompletion();
+        attacker.transform.DOMoveX(attacker.transform.position.x + 0.75f, 0.15f);
+        
+        // later check what action the monster is doing instead of just attacking anyway
+        DealDamageGA dealDamageGA = new (attacker.AttackPower, new(){HeroSystem.Instance.heroView});
+        ActionSystem.Instance.AddReaction(dealDamageGA);
+        
     }
     
 }

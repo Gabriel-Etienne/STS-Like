@@ -1230,6 +1230,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 815833512}
   m_CullTransparentMesh: 1
+--- !u!1 &835794345
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 835794346}
+  - component: {fileID: 835794347}
+  m_Layer: 0
+  m_Name: DamageSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &835794346
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 835794345}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1155604964}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &835794347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 835794345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c4ea3b8ad32bf8448c2d26abfd80cdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DamageSystem
+  damageVFX: {fileID: 5880797563127281583, guid: 265d3a5ba69981a4698ceabcedf368b0, type: 3}
 --- !u!1 &865318168
 GameObject:
   m_ObjectHideFlags: 0
@@ -1502,8 +1547,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MatchSetupSystem
   heroData: {fileID: 11400000, guid: 03172ecf5a4987c41b826f9b861e6ae6, type: 2}
   enemyDatas:
-  - {fileID: 11400000, guid: d533d4f248d5926469207db50042bc5b, type: 2}
   - {fileID: 11400000, guid: b8d08a2d1cb21d047a2c39307365035b, type: 2}
+  - {fileID: 11400000, guid: d533d4f248d5926469207db50042bc5b, type: 2}
   - {fileID: 11400000, guid: b8d08a2d1cb21d047a2c39307365035b, type: 2}
 --- !u!1 &898902267
 GameObject:
@@ -1964,6 +2009,7 @@ Transform:
   - {fileID: 1802416071}
   - {fileID: 703441024}
   - {fileID: 768133335}
+  - {fileID: 835794346}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1336708114
@@ -2291,8 +2337,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBoardView
   slots:
-  - {fileID: 2129952428}
   - {fileID: 1970635722}
+  - {fileID: 2129952428}
   - {fileID: 1882767625}
 --- !u!1 &1607792647
 GameObject:
