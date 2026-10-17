@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -9,6 +10,24 @@ public class MatchSetupSystem : MonoBehaviour
 
     private void Start()
     {
+        StartCoroutine(WaitForSetup());
+    }
+    
+    private IEnumerator WaitForSetup()
+    {
+        bool isEverythingReady = false;
+        while (!isEverythingReady)
+        {
+            isEverythingReady =
+                HeroSystem.Instance != null &&
+                EnemySystem.Instance != null &&
+                CardSystem.Instance != null &&
+                ActionSystem.Instance != null &&
+                EnemyViewCreator.Instance != null;
+
+            yield return null; 
+        }
+        
         HeroSystem.Instance.Setup(heroData);
         EnemySystem.Instance.Setup(enemyDatas);
         

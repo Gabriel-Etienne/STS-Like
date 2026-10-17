@@ -17,6 +17,7 @@ public class EnemySystem : Singleton<EnemySystem>
         ActionSystem.AttachPerformer<AttackHeroGA>(AttackHeroPerformer);
         ActionSystem.AttachPerformer<KillEnemyGA>(KillEnemyPerformer);
     }
+    
     private void OnDisable()
     {
         ActionSystem.DetachPerformer<EnemyTurnGA>();;
@@ -26,10 +27,12 @@ public class EnemySystem : Singleton<EnemySystem>
 
     public void Setup(List<EnemyData> enemyDatas)
     {
+        
         foreach (var enemyData in enemyDatas)
         {
             enemyBoardView.AddEnemy(enemyData);
         }
+        
     }
 
     private IEnumerator EnemyTurnPerformer(EnemyTurnGA enemyTurnGa)

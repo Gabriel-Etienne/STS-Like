@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 
+[DefaultExecutionOrder(-1000)]
 public class ActionSystem : Singleton<ActionSystem>
 {
     private List<GameAction> reactions = null; // current reactions list

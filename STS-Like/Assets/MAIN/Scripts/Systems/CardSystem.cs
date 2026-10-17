@@ -24,6 +24,7 @@ public class CardSystem : Singleton<CardSystem>
 
     private void OnEnable()
     {
+        
         ActionSystem.AttachPerformer<DrawCardGA>(DrawCardPerformer);
         ActionSystem.AttachPerformer<DiscardAllCardsGA>(DiscardAllCardsPerformer);
         
@@ -46,6 +47,7 @@ public class CardSystem : Singleton<CardSystem>
 
     public void Setup(List<CardData> deckData)
     {
+        
         foreach (var cardData in deckData)
         {
             Card card = new(cardData);
